@@ -9,6 +9,7 @@ import Register from './Components/Register/Register';
 import Profile from './pages/profile/Profile';
 import Expense from './Components/Expense/Expense'
 import IncomeSplit from './Components/IncomeSplit/IncomeSplit'
+import Budget from './Components/Budget/Budget'
 
 // Layout Components
 import NavHeader from './Components/navHeader/NavHeader';
@@ -30,6 +31,7 @@ function App() {
           <Route path='/profile' element={<Profile />}/>
           <Route path='/expense' element={<Expense />}/>
           <Route path='/incomeSplit' element={<IncomeSplit />}/>
+          <Route path='/budget' element={<Budget />}/>
         </Routes>
         <Footer />
       </Router>
