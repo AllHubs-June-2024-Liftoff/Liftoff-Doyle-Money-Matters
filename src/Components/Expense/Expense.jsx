@@ -33,6 +33,16 @@ function Expense() {
         }).then(()=> {
             console.log("New transaction added.")
         });
+
+        setAmount('');
+        setDescription('');
+        setIsRecurring(false);
+        setIsIncome(false);
+        setRecurring('')
+        setTag('');
+        setSplits([]);
+        setIsSplits(false)
+        setSplitAmount('');
         
     }
 
@@ -55,21 +65,14 @@ function Expense() {
                                 <input type="checkbox" checked={isIncome} onChange={(e) => setIsIncome(e.target.checked)}className='mt-2 p-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue block' ></input>
                             </label>
 
-                            <label    className='mt-2 p-2 w-full border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 block' >Select if transaction need Split Tags: 
+                            <label    className='mt-2 p-2 w-full border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 block' >Select if transaction needs Split Tags: 
                                 <input type="checkbox" checked={isSplits} onChange={() =>setIsSplits(!isSplits)}className='mt-2 p-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue block' ></input>      
                             </label>
                                 {isSplits && (     
                                     <label    className='mt-2 p-2 w-full border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue block'>Amount (Split)
                                         <input type="text" value={splitAmount} onChange={(e) => setSplitAmount(e.target.value)}className='mt-2 p-2 w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue' ></input>
                                         <label className='mt-2 p-2 w-full border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue block' >Tag (Split)
-                                            <select className='mt-2 p-2 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue block'  name="selectedTag" value={tag} onChange={(e) => setTag(e.target.value)}>
-                                            {/* Placeholder options */}
-                                            <option value="null">Please select a tag</option>
-                                            <option value="Rent/Mortgage">Rent/Mortgage</option>
-                                            <option value="Food">Food</option>
-                                            <option value="Clothing">Clothing</option>
-                                            <option value="Misc.">Misc.</option>
-                                            </select>
+                                        <input type="text" value={tag} onChange={(e) => setTag(e.target.value)}className='mt-2 p-2 w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue' ></input>
                                         </label>
                                         <button  className='w-full py-2 bg-lightblue text-white rounded-md hover:bg-green 
                                                  hover:text-black focus:outline-none focus:ring-2 focus:ring-blue' type="button" onClick={handleAddSplit} > Add Split </button>
@@ -88,17 +91,10 @@ function Expense() {
                                 <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}className='mt-2 p-2 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue block' ></input>
                             </label>
 
-                           <label className='mt-2 p-2 w-full border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue block' >Tag
-                                <select className='mt-2 p-2 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue block'  name="selectedTag" value={tag} onChange={(e) => setTag(e.target.value)}>
-                                      {/* Placeholder options */}
-                                      <option value="null">Please select a tag</option>
-                                    <option value="Rent/Mortgage">Rent/Mortgage</option>
-                                    <option value="Food">Food</option>
-                                    <option value="Clothing">Clothing</option>
-                                    <option value="Misc.">Misc.</option>
-                                </select>
+                            <label    className='mt-2 p-2 w-full border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue block'>Tag
+                                <input type="text" value={tag} onChange={(e) => setTag(e.target.value)}className='mt-2 p-2 w-full border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue' ></input>
+                            </label>
 
-                           </label>
 
                             <button  className='w-full py-2 bg-lightblue text-white rounded-md hover:bg-green 
                             hover:text-black focus:outline-none focus:ring-2 focus:ring-blue'>
