@@ -9,6 +9,10 @@ function Budget() {
                     <th>Tag</th>
                     <th>Spent</th>
                 </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
             </thead>
         </table>
     )
