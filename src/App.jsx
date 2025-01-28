@@ -32,6 +32,7 @@ function App() {
           <Route path='/expense' element={<Expense />}/>
           <Route path='/incomeSplit' element={<IncomeSplit />}/>
           <Route path='/budget' element={<Budget />}/>
+          <Route path='/budget' element={<Budget />}/>
         </Routes>
         <Footer />
       </Router>
