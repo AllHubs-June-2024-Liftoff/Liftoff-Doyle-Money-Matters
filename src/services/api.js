@@ -1,11 +1,13 @@
 import axios from "axios";
 
+// Axios instance
 const api = axios.create({
+    // Where React communicates with Spring Boot
   baseURL: "http://localhost:8080",
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
+  withCredentials: true, // allows session-based cookies
 });
 
 const authService = {
