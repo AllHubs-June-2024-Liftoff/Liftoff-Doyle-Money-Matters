@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import authService from "../../services/api";
+import api from "../../services/api";
 import { useAuth } from "../../context/AuthContext";
 
 function Login() {
@@ -13,6 +13,8 @@ function Login() {
   });
   const navigate = useNavigate();
   const { login } = useAuth();
+
+  const {authService} = api;
 
   const handleLogin = async (e) => {
     e.preventDefault(); 

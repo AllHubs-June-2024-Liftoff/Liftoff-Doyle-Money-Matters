@@ -39,4 +39,22 @@ const authService = {
     }
 };
 
-export default authService;
+const transService = {
+    add: async(transaction) => {
+        try {
+            const response = await api.post('/transaction/add', transaction);
+            return response.data;
+        } catch (error) {
+            if (error.response) {
+                throw error.response.data;
+            }
+            throw { message: 'Network error occurred'}
+        }
+    },
+
+}
+
+export default {
+    authService,
+    transService
+};

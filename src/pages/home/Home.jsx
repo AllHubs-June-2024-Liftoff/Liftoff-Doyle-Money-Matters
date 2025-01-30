@@ -55,9 +55,7 @@ const Home = () => {
               <Link to="/register">
                 <button className="rounded-full px-4 py-2 bg-blue-500 text-white">Register</button>
               </Link>
-                 <Link to="/expense">
-                <button className="rounded-full px-4 py-2 bg-blue-500 text-white">Expense</button>
-              </Link>
+                
             </article>
           </div>
         </section>

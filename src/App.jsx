@@ -7,7 +7,7 @@ import About from './pages/about/About';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import Profile from './pages/profile/Profile';
-import Expense from './Components/Expense/Expense'
+import Transaction from './Components/Transaction/Transaction'
 import IncomeSplit from './Components/IncomeSplit/IncomeSplit'
 
 // Layout Components
@@ -16,6 +16,7 @@ import Footer from './Components/footer/Footer';
 
 // Context
 import { AuthProvider } from './context/AuthContext';
+
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
           <Route path='/login' element={<Login />}/>
           <Route path='/register' element={<Register />}/>
           <Route path='/profile' element={<Profile />}/>
-          <Route path='/expense' element={<Expense />}/>
+          <Route path='/transaction/add' element={<Transaction />}/>
           <Route path='/incomeSplit' element={<IncomeSplit />}/>
         </Routes>
         <Footer />

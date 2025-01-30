@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { PieChart } from '../../components/pieChart/PieChart'
 import { VertBarChart } from '../../Components/vertBarChart/VertBarChart'
+import { Link } from "react-router-dom";
 import AuthStatus from "../../components/auth/authStatus/AuthStatus";
 
 const Profile = () => {
@@ -129,6 +130,9 @@ const Profile = () => {
     <>
       <h1 className='text-6xl'>Profile: {username}</h1>
       <p>{budgetName}</p>
+      <div> <Link to="/transaction/add">
+                <button className="rounded-full px-4 py-2 bg-blue-500 text-white">Add Transaction</button>
+              </Link></div>
       <div class="flex space-x-24">
         <PieChart budgetName={budgetName} monthlyExpenses={monthlyExpenses} expenseTags={expenseTags} />
         <VertBarChart yearlyIncome={yearlyIncome} yearlyExpenses={yearlyExpenses} />
