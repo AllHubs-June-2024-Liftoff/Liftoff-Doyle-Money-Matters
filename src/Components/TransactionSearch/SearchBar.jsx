@@ -11,12 +11,12 @@ function SearchBar({ setTransactions, budget_id}) {
     const [query, setQuery] = useState('');
      const {transService} = api;
 
-    const handleSearch = async (e) => {
+     const handleSearch = async (e) => {
         e.preventDefault();
 
         if(query) {
             try {
-                const results = await transService.search(query);
+                const results = await transService.search(query, budget_id);
                 setTransactions(results);
             } catch (error) {
                 console.error('Could not fetch results', error);
