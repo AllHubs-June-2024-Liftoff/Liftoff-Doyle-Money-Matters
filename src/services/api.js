@@ -209,7 +209,7 @@ const budgetService = {
 
     getByUser: async (user_id) => {
         try{
-            const response = await api.get(`api/budgets/user/${user_id}`)
+            const response = await api.get(`/api/budgets/user/${user_id}`)
             return response.data;
         }catch (error) {
             if (error.response) {
