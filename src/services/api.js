@@ -186,7 +186,7 @@ delete: async (id, params = {}) => {
     search: async(query) => {
 
         try {
-            const response = await api.get(`api/transactions/search?query=${query}`);
+            const response = await api.get(`/api/transactions/search?query=${query}`);
             return response.data;
         }catch (error) {
             if (error.response) {
