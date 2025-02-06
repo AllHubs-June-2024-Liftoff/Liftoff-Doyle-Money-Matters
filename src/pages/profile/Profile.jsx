@@ -11,7 +11,10 @@ import BudgetOverview from '../../Components/BudgetOverview/BudgetOverview';
 import BudgetNotes from '../../Components/budgetNotes/BudgetNotes';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
+  const { transService, budgetService } = api;
+
   const [budgetName, setBudgetName] = useState("")
   const [monthlyExpenses, setMonthlyExpenses] = useState([])
   const [yearlyIncome, setYearlyIncome] = useState([])
@@ -21,22 +24,19 @@ const Profile = () => {
   const [monthIncomeTotal, setMonthIncomeTotal] = useState(0)
   const [monthExpensesTotal, setMonthExpensesTotal] = useState(0)
 
-  const user_id = user.userId;
-  const { transService, budgetService } = api;
-  const navigate = useNavigate();
-
   useEffect(() => {
-    const budgetList = async () => {
-
+    const loadBudgetList = async () => {
+      if (user) {
       try {
-        const result = await budgetService.getByUser(user_id);
+        const result = await budgetService.getByUser(user.userId);
         setBudgetList(result);
       } catch (error) {
         console.error("Error fetching budget data", error);
       }
+      }
     };
-    budgetList();
-  }, []);
+    loadBudgetList();
+  }, [user, budgetService]);
 
   const handleChange = (e) => {
     setBudgetId(e.target.value);
@@ -47,7 +47,7 @@ const Profile = () => {
       setMonthlyExpenses([])
 
       const fetchData = await axios.get(`http://localhost:8080/api/transactions/budget/${budget_id}`)
-      const tagsData = await axios.get(`http://localhost:8080/api/tags/user/${user_id}`)
+      const tagsData = await axios.get(`http://localhost:8080/api/tags/user/${user.userId}`)
 
       let date = new Date().toISOString()
       let yearMonth = date.slice(0, 7)
