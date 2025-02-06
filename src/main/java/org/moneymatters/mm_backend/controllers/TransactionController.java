@@ -186,7 +186,11 @@ public class TransactionController {
         return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
     }
         List<Transaction> transactions = transactionRepository.findByUser(userOptional.get());
-        return new ResponseEntity<>(transactions, HttpStatus.OK);
+        List<TransactionDTO> transactionDTOS = transactions.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(transactionDTOS, HttpStatus.OK);
     }
 
 
@@ -292,6 +296,50 @@ public class TransactionController {
     public ResponseEntity<?> searchTransactions(@RequestParam String query, @RequestParam Integer budget_id){
         List<Transaction> transactions = transactionRepository.findByDescriptionContainingIgnoreCase(query, budget_id);
         return new ResponseEntity<>(transactions, HttpStatus.OK);
+    }
+
+    /**
+     * Converts a Transaction entity to a TransactionDTO.
+     * This handles the proper conversion of all fields, including splits.
+     */
+    private TransactionDTO convertToDTO(Transaction transaction) {
+        TransactionDTO dto = new TransactionDTO();
+        dto.setId(transaction.getId());
+        dto.setAmount(transaction.getAmount());
+        dto.setDescription(transaction.getDescription());
+        dto.setIncome(transaction.isIncome());
+        dto.setRecurring(transaction.isRecurring());
+        dto.setCreatedDate(transaction.getCreatedDate());
+
+        // Set user ID if user exists
+        if (transaction.getUser() != null) {
+            dto.setUserId(transaction.getUser().getUser_id());
+        }
+
+        // Set budget ID if budget exists
+        if (transaction.getBudget() != null) {
+            dto.setBudgetId(transaction.getBudget().getId());
+        }
+
+        // Set tag ID if tag exists
+        if (transaction.getTag() != null) {
+            dto.setTagId(transaction.getTag().getId());
+        }
+
+        // Convert splits if they exist
+        if (transaction.getSplits() != null) {
+            List<TransactionDTO.SplitDto> splitDtos = transaction.getSplits().stream()
+                    .map(split -> {
+                        TransactionDTO.SplitDto splitDto = new TransactionDTO.SplitDto();
+                        splitDto.setSplitAmount(split.getSplitAmount());
+                        splitDto.setTag(String.valueOf(split.getTag().getId()));
+                        return splitDto;
+                    })
+                    .collect(Collectors.toList());
+            dto.setSplits(splitDtos);
+        }
+
+        return dto;
     }
 
 }

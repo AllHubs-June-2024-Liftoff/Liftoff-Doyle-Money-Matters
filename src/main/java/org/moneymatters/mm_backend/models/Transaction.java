@@ -10,7 +10,7 @@ import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
-@JsonIgnoreProperties({"user", "tag"})
+@JsonIgnoreProperties({"user", "tag", "hibernateLazyInitializer", "handler"})
 @Entity
 public class Transaction extends Entry{
 
@@ -21,6 +21,7 @@ public class Transaction extends Entry{
     private Tag tag;
 
     @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("transaction")
     private List<Split> splits;
 
     public Transaction(int id, Double amount, boolean isIncome, String description, Budget budget, User user, boolean isRecurring, Tag tag, List<Split> splits) {
@@ -34,6 +35,8 @@ public class Transaction extends Entry{
         super();
         this.isRecurring = isRecurring;
     }
+
+
 
 
     public Transaction() { };

@@ -24,7 +24,6 @@ public class TransactionDTO {
     private LocalDateTime createdDate;
     private List<SplitDto> splits;
 
-
     public Integer getUserId() {
         return userId;
     }

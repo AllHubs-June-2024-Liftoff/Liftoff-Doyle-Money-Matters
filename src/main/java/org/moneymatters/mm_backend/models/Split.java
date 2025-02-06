@@ -1,6 +1,7 @@
 package org.moneymatters.mm_backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,7 @@ public class Split {
 
     private Integer splitAmount;
 
+    @JsonIgnoreProperties("splits")
     @ManyToOne
     @JoinColumn(name = "transaction_id", nullable = false)
     private Transaction transaction;
